@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AddressBook
 {
@@ -51,24 +52,39 @@ namespace AddressBook
 
 
             // Create a list of emails that match our Contacts
-            List<string> emails = new List<string>() {
+            List<string> emails = new List<string>()
+            {
             "sue.jones@email.com",
             "juan.lopez@email.com",
             "bob.smith@email.com",
         };
 
             // Insert an email that does NOT match a Contact
-            emails.Insert(1, "not.in.addressbook@email.com");
-
+            try
+            {
+                emails.Insert(1, "not.in.addressbook@email.com");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.Message}");
+            }
 
             //  Search the AddressBook by email and print the information about each Contact
             foreach (string email in emails)
             {
-                Contact contact = addressBook.GetByEmail(email);
-                Console.WriteLine("----------------------------");
-                Console.WriteLine($"Name: {contact.FullName}");
-                Console.WriteLine($"Email: {contact.Email}");
-                Console.WriteLine($"Address: {contact.Address}");
+                try
+                {
+                    Contact contact = addressBook.GetByEmail(email);
+                    Console.WriteLine("----------------------------");
+                    Console.WriteLine($"Name: {contact.FullName}");
+                    Console.WriteLine($"Email: {contact.Email}");
+                    Console.WriteLine($"Address: {contact.Address}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"{ex.Message}");
+                }
             }
         }
     }
+}

@@ -60,13 +60,9 @@ namespace AddressBook
         };
 
             // Insert an email that does NOT match a Contact
-            try
+
             {
                 emails.Insert(1, "not.in.addressbook@email.com");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"{ex.Message}");
             }
 
             //  Search the AddressBook by email and print the information about each Contact
@@ -82,6 +78,7 @@ namespace AddressBook
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine("----------------------------");
                     Console.WriteLine($"{ex.Message}");
                 }
             }
